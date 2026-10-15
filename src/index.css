@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-warm-cream: #F8E8D5;
+  --color-soft-peach: #F4D2BE;
+  --color-dusty-pink: #D9A99A;
+  --color-muted-lavender: #C9BDD8;
+  --color-sage: #B9C5A0;
+  --color-butter-yellow: #E8D49A;
+  --color-terracotta: #B96F58;
+  --color-warm-brown: #6F5145;
+  --color-dark-chocolate: #332822;
+  --color-muted-teal: #67949A;
+
+  --font-editorial: 'Fraunces', 'Playfair Display', Georgia, serif;
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Kalam', cursive;
+}
+
+:root {
+  --bg-cream: #F8E8D5;
+  --text-dark: #332822;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FAF5EE;
+  color: #332822;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8E8D5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9A99A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B96F58;
+}
+
+/* Subtle Card Glow */
+.admin-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(217, 169, 154, 0.45);
+  box-shadow: 0 4px 20px -2px rgba(51, 40, 34, 0.04);
+}
+
+.admin-card:hover {
+  border-color: rgba(185, 111, 88, 0.5);
+  box-shadow: 0 8px 30px -4px rgba(51, 40, 34, 0.08);
+}
