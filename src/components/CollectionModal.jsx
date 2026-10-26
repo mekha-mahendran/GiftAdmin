@@ -7,7 +7,7 @@ export const CollectionModal = ({ isOpen, onClose, onSave, collection }) => {
     name: '',
     slug: '',
     description: '',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80',
+    image: '',
     color: '#F4D2BE',
     textColor: '#332822',
     itemCount: 15
@@ -30,7 +30,7 @@ export const CollectionModal = ({ isOpen, onClose, onSave, collection }) => {
         name: collection.name || '',
         slug: collection.slug || '',
         description: collection.description || '',
-        image: collection.image || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80',
+        image: collection.image || '',
         color: collection.color || '#F4D2BE',
         textColor: collection.textColor || '#332822',
         itemCount: collection.itemCount || 15
@@ -40,7 +40,7 @@ export const CollectionModal = ({ isOpen, onClose, onSave, collection }) => {
         name: '',
         slug: '',
         description: '',
-        image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80',
+        image: '',
         color: '#F4D2BE',
         textColor: '#332822',
         itemCount: 12

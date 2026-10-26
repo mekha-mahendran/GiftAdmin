@@ -85,8 +85,14 @@ export const OverviewTab = ({
               ₹{totalRevenue.toLocaleString('en-IN')}
             </h3>
             <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 mt-1">
-              <ArrowUpRight className="w-3.5 h-3.5" />
-              <span>+24.8% vs last month</span>
+              {totalRevenue > 0 ? (
+                <>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>Real-time store revenue</span>
+                </>
+              ) : (
+                <span>No revenue recorded yet</span>
+              )}
             </p>
           </div>
         </div>
@@ -189,45 +195,53 @@ export const OverviewTab = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#D9A99A]/20 font-sans">
-                {orders.slice(0, 5).map((ord) => (
-                  <tr key={ord.id} className="hover:bg-[#F8E8D5]/20 transition-colors">
-                    <td className="py-3 font-mono font-bold text-[#B96F58]">
-                      {ord.id}
-                    </td>
-                    <td className="font-semibold text-[#332822]">
-                      {ord.customer?.name || ord.customer}
-                    </td>
-                    <td>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#E8D49A] text-[#6F5145]">
-                        {ord.type || 'Retail'}
-                      </span>
-                    </td>
-                    <td className="font-bold text-[#332822]">
-                      ₹{ord.total}
-                    </td>
-                    <td>
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                        ord.status === 'Delivered'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : ord.status === 'Shipped'
-                          ? 'bg-blue-100 text-blue-800'
-                          : ord.status === 'Packed'
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'bg-amber-100 text-amber-800'
-                      }`}>
-                        {ord.status}
-                      </span>
-                    </td>
-                    <td className="text-right">
-                      <button
-                        onClick={() => onOpenOrderDetails(ord)}
-                        className="px-2.5 py-1 bg-[#F8E8D5] hover:bg-[#B96F58] hover:text-white text-[#6F5145] rounded-lg text-[11px] font-bold transition-all"
-                      >
-                        Inspect
-                      </button>
+                {orders.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="py-8 text-center text-[#6F5145] text-xs">
+                      No customer orders yet. Incoming orders will show up here in real time.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  orders.slice(0, 5).map((ord) => (
+                    <tr key={ord.id} className="hover:bg-[#F8E8D5]/20 transition-colors">
+                      <td className="py-3 font-mono font-bold text-[#B96F58]">
+                        {ord.id}
+                      </td>
+                      <td className="font-semibold text-[#332822]">
+                        {ord.customer?.name || ord.customer}
+                      </td>
+                      <td>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#E8D49A] text-[#6F5145]">
+                          {ord.type || 'Retail'}
+                        </span>
+                      </td>
+                      <td className="font-bold text-[#332822]">
+                        ₹{ord.total}
+                      </td>
+                      <td>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                          ord.status === 'Delivered'
+                            ? 'bg-emerald-100 text-emerald-800'
+                            : ord.status === 'Shipped'
+                            ? 'bg-blue-100 text-blue-800'
+                            : ord.status === 'Packed'
+                            ? 'bg-purple-100 text-purple-800'
+                            : 'bg-amber-100 text-amber-800'
+                        }`}>
+                          {ord.status}
+                        </span>
+                      </td>
+                      <td className="text-right">
+                        <button
+                          onClick={() => onOpenOrderDetails(ord)}
+                          className="px-2.5 py-1 bg-[#F8E8D5] hover:bg-[#B96F58] hover:text-white text-[#6F5145] rounded-lg text-[11px] font-bold transition-all"
+                        >
+                          Inspect
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -251,19 +265,25 @@ export const OverviewTab = ({
             </div>
 
             <div className="space-y-3">
-              {wholesaleApps.slice(0, 3).map((app) => (
-                <div key={app.id} className="p-3 bg-[#FAF5EE] rounded-2xl border border-[#D9A99A]/30 flex items-center justify-between text-xs">
-                  <div>
-                    <h5 className="font-bold text-[#332822]">{app.businessName}</h5>
-                    <p className="text-[11px] text-[#6F5145]">{app.city} • {app.contactPerson}</p>
-                  </div>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                    app.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                  }`}>
-                    {app.status}
-                  </span>
+              {wholesaleApps.length === 0 ? (
+                <div className="py-6 text-center text-xs text-[#6F5145]">
+                  No partner applications received yet.
                 </div>
-              ))}
+              ) : (
+                wholesaleApps.slice(0, 3).map((app) => (
+                  <div key={app.id} className="p-3 bg-[#FAF5EE] rounded-2xl border border-[#D9A99A]/30 flex items-center justify-between text-xs">
+                    <div>
+                      <h5 className="font-bold text-[#332822]">{app.businessName}</h5>
+                      <p className="text-[11px] text-[#6F5145]">{app.city} • {app.contactPerson}</p>
+                    </div>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                      app.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                    }`}>
+                      {app.status}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
@@ -279,15 +299,21 @@ export const OverviewTab = ({
             </div>
 
             <div className="space-y-3 text-xs">
-              {bulkEnquiries.map((enq) => (
-                <div key={enq.id} className="p-3 bg-[#F8E8D5]/30 rounded-2xl border border-[#D9A99A]/30 space-y-1">
-                  <div className="flex items-center justify-between">
-                    <strong className="text-[#332822]">{enq.name}</strong>
-                    <span className="font-bold text-[#B96F58]">{enq.quantity} pcs</span>
-                  </div>
-                  <p className="text-[11px] text-[#6F5145] truncate">{enq.productName}</p>
+              {bulkEnquiries.length === 0 ? (
+                <div className="py-6 text-center text-xs text-[#6F5145]">
+                  No bulk enquiries received yet.
                 </div>
-              ))}
+              ) : (
+                bulkEnquiries.map((enq) => (
+                  <div key={enq.id} className="p-3 bg-[#F8E8D5]/30 rounded-2xl border border-[#D9A99A]/30 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <strong className="text-[#332822]">{enq.name}</strong>
+                      <span className="font-bold text-[#B96F58]">{enq.quantity} pcs</span>
+                    </div>
+                    <p className="text-[11px] text-[#6F5145] truncate">{enq.productName}</p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 

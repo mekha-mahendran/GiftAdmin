@@ -114,15 +114,22 @@ export const ProductsTab = ({
               className="bg-white rounded-3xl border border-[#D9A99A]/40 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group"
             >
               {/* Product Image & Top Overlays */}
-              <div className="relative h-48 bg-[#FAF5EE] overflow-hidden">
-                <img
-                  src={prod.images?.[0] || prod.image}
-                  alt={prod.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';
-                  }}
-                />
+              <div className="relative h-48 bg-[#FAF5EE] overflow-hidden flex items-center justify-center">
+                {(prod.images?.[0] || prod.image) ? (
+                  <img
+                    src={prod.images?.[0] || prod.image}
+                    alt={prod.name}
+                    className="w-full h-full object-cover block"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  <div className="text-center p-4 text-[#8C7A6B]">
+                    <Package className="w-8 h-8 mx-auto mb-1 opacity-40" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider block">No Photo Uploaded</span>
+                  </div>
+                )}
                 
                 {/* Category & Badge */}
                 <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">

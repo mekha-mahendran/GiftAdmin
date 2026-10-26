@@ -3,6 +3,14 @@ import { X, Sparkles, Image, Tag, DollarSign, Package, Check, Layers } from 'luc
 import { ImageUploadPicker } from './ImageUploadPicker';
 
 export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) => {
+  const categoryOptions = React.useMemo(() => {
+    const list = Array.isArray(categories) ? [...categories] : [];
+    if (!list.some(c => c.id === 'jumkas' || c.name?.toLowerCase().includes('jumka'))) {
+      list.push({ id: 'jumkas', name: 'Jumkas' });
+    }
+    return list;
+  }, [categories]);
+
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
@@ -18,11 +26,12 @@ export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) =
     isBestseller: false,
     isNewArrival: true,
     description: '',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80'
+    image: ''
   });
 
   useEffect(() => {
     if (product) {
+      const existingImg = product.images?.[0] || product.image || '';
       setFormData({
         name: product.name || '',
         slug: product.slug || '',
@@ -38,7 +47,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) =
         isBestseller: !!product.isBestseller,
         isNewArrival: !!product.isNewArrival,
         description: product.description || '',
-        image: product.images?.[0] || product.image || 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80'
+        image: existingImg
       });
     } else {
       setFormData({
@@ -56,7 +65,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) =
         isBestseller: false,
         isNewArrival: true,
         description: '',
-        image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80'
+        image: ''
       });
     }
   }, [product, isOpen, categories]);
@@ -70,10 +79,12 @@ export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) =
       return;
     }
     const slug = formData.slug || formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const primaryImg = formData.image || '';
     onSave({
       ...formData,
       slug,
-      images: [formData.image],
+      image: primaryImg,
+      images: primaryImg ? [primaryImg] : [],
       price: Number(formData.price),
       originalPrice: Number(formData.originalPrice) || null,
       wholesalePrice: Number(formData.wholesalePrice) || null,
@@ -135,7 +146,7 @@ export const ProductModal = ({ isOpen, onClose, onSave, product, categories }) =
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 className="w-full px-3.5 py-2 bg-[#F8E8D5]/20 border border-[#D9A99A]/60 rounded-xl text-xs font-semibold text-[#332822] focus:outline-none focus:border-[#B96F58]"
               >
-                {categories.map((cat) => (
+                {categoryOptions.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
                   </option>

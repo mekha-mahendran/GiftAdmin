@@ -21,6 +21,7 @@ import { SettingsTab } from './pages/SettingsTab';
 import { CustomizerTab } from './pages/CustomizerTab';
 import { DEFAULT_THEME } from './data/themePresets';
 import { initSyncBridge, syncToFrontendStore } from './utils/syncBridge';
+import { api } from './utils/api';
 
 import {
   INITIAL_CATEGORIES,
@@ -50,27 +51,77 @@ export default function App() {
 
   const [categories, setCategories] = useState(() => {
     const saved = localStorage.getItem('giftpocket_admin_categories');
-    return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          let updated = parsed.map(c => {
+            if (c.id === 'fridge-magnets' && (!c.image || c.image.includes('photo-1584308666744-24d5c474f2ae') || c.image.includes('unsplash.com'))) {
+              return { ...c, image: '/images/products/fridge-magnets.jpg' };
+            }
+            return c;
+          });
+          const hasFridge = updated.some(c => c.id === 'fridge-magnets');
+          if (!hasFridge) {
+            const fridgeCat = INITIAL_CATEGORIES.find(c => c.id === 'fridge-magnets');
+            if (fridgeCat) updated.push(fridgeCat);
+          }
+          const hasJumkas = updated.some(c => c.id === 'jumkas' || c.name?.toLowerCase().includes('jumka'));
+          if (!hasJumkas) {
+            const jumkaCat = INITIAL_CATEGORIES.find(c => c.id === 'jumkas');
+            if (jumkaCat) updated.push(jumkaCat);
+          }
+          localStorage.setItem('giftpocket_admin_categories', JSON.stringify(updated));
+          return updated;
+        }
+      } catch (e) {
+        console.warn('Error parsing cached categories', e);
+      }
+    }
+    return INITIAL_CATEGORIES;
   });
 
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('giftpocket_admin_products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+    if (!saved) return INITIAL_PRODUCTS;
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) {
+        const existingIds = new Set(parsed.map(p => p.id));
+        const missing = INITIAL_PRODUCTS.filter(p => !existingIds.has(p.id));
+        return missing.length > 0 ? [...parsed, ...missing] : parsed;
+      }
+    } catch (e) {
+      console.warn('Error reading cached admin products', e);
+    }
+    return INITIAL_PRODUCTS;
   });
 
   const [orders, setOrders] = useState(() => {
-    const saved = localStorage.getItem('giftpocket_admin_orders');
-    return saved ? JSON.parse(saved) : INITIAL_ORDERS;
+    try {
+      localStorage.removeItem('giftpocket_admin_orders');
+    } catch (e) {
+      console.warn('Error clearing cached orders', e);
+    }
+    return [];
   });
 
   const [wholesaleApps, setWholesaleApps] = useState(() => {
-    const saved = localStorage.getItem('giftpocket_admin_wholesale_apps');
-    return saved ? JSON.parse(saved) : INITIAL_WHOLESALE_APPS;
+    try {
+      localStorage.removeItem('giftpocket_admin_wholesale_apps');
+    } catch (e) {
+      console.warn('Error clearing cached wholesale apps', e);
+    }
+    return [];
   });
 
   const [bulkEnquiries, setBulkEnquiries] = useState(() => {
-    const saved = localStorage.getItem('giftpocket_admin_bulk_enquiries');
-    return saved ? JSON.parse(saved) : INITIAL_BULK_ENQUIRIES;
+    try {
+      localStorage.removeItem('giftpocket_admin_bulk_enquiries');
+    } catch (e) {
+      console.warn('Error clearing cached bulk enquiries', e);
+    }
+    return [];
   });
 
   const [storyFrames, setStoryFrames] = useState(() => {
@@ -119,7 +170,12 @@ export default function App() {
       if (initialData.giftpocket_customizer_shapes_v1) setCustomizerShapes(initialData.giftpocket_customizer_shapes_v1);
       if (initialData.giftpocket_admin_categories) setCategories(initialData.giftpocket_admin_categories);
       if (initialData.giftpocket_admin_products) setProducts(initialData.giftpocket_admin_products);
-      if (initialData.giftpocket_admin_orders) setOrders(initialData.giftpocket_admin_orders);
+      if (initialData.giftpocket_admin_orders && Array.isArray(initialData.giftpocket_admin_orders)) {
+        const cleanOrders = initialData.giftpocket_admin_orders.filter(o => 
+          !['ORD-98214', 'ORD-98215', 'ORD-98216', 'ORD-98217'].includes(o.id) && !o.isMock
+        );
+        setOrders(cleanOrders);
+      }
       if (initialData.giftpocket_admin_coupons) setCoupons(initialData.giftpocket_admin_coupons);
       if (initialData.giftpocket_admin_settings) setSettings(initialData.giftpocket_admin_settings);
     });
@@ -220,28 +276,44 @@ export default function App() {
   };
 
   // Handlers for Products
-  const handleSaveProduct = (productData) => {
+  const handleSaveProduct = async (productData) => {
     if (productModal.product) {
+      const updated = { ...productModal.product, ...productData };
       setProducts((prev) =>
-        prev.map((p) => (p.id === productModal.product.id ? { ...p, ...productData } : p))
+        prev.map((p) => (p.id === productModal.product.id ? updated : p))
       );
       showToast(`Updated product: ${productData.name}`);
+      try {
+        await api.put(`/products/${productModal.product.id}`, updated);
+      } catch (err) {
+        console.warn('Backend product update note:', err.message);
+      }
     } else {
       const newProd = {
         ...productData,
-        id: `gp-prod-${Date.now()}`,
+        id: productData.id || `gp-prod-${Date.now()}`,
         rating: 5.0,
         reviewsCount: 0
       };
       setProducts((prev) => [newProd, ...prev]);
       showToast(`Added new product: ${productData.name}`);
+      try {
+        await api.post('/products', newProd);
+      } catch (err) {
+        console.warn('Backend product create note:', err.message);
+      }
     }
   };
 
-  const handleDeleteProduct = (id) => {
+  const handleDeleteProduct = async (id) => {
     if (window.confirm('Are you sure you want to delete this product from the catalog?')) {
       setProducts((prev) => prev.filter((p) => p.id !== id));
       showToast('Product removed from catalog.');
+      try {
+        await api.delete(`/products/${id}`);
+      } catch (err) {
+        console.warn('Backend product delete note:', err.message);
+      }
     }
   };
 
@@ -297,12 +369,51 @@ export default function App() {
     showToast(`Tracking updated for Order #${orderId}`);
   };
 
+  const handleDeleteOrder = (orderId) => {
+    if (window.confirm(`Delete Order #${orderId}?`)) {
+      setOrders((prev) => prev.filter((o) => o.id !== orderId));
+      showToast(`Deleted order #${orderId}`);
+    }
+  };
+
+  const handleClearAllOrders = () => {
+    if (window.confirm('Are you sure you want to clear all orders? This will reset the pipeline to empty.')) {
+      setOrders([]);
+      localStorage.removeItem('giftpocket_admin_orders');
+      showToast('All orders cleared.');
+    }
+  };
+
   // Handlers for Wholesale
   const handleUpdateWholesaleStatus = (appId, newStatus, assignedTier) => {
     setWholesaleApps((prev) =>
       prev.map((a) => (a.id === appId ? { ...a, status: newStatus, tier: assignedTier } : a))
     );
     showToast(`Partner application updated to ${newStatus}`);
+  };
+
+  const handleDeleteWholesaleApp = (appId) => {
+    if (window.confirm('Delete this wholesale application?')) {
+      setWholesaleApps((prev) => prev.filter((a) => a.id !== appId));
+      showToast('Wholesale application deleted.');
+    }
+  };
+
+  const handleDeleteBulkEnquiry = (enqId) => {
+    if (window.confirm('Delete this bulk inquiry?')) {
+      setBulkEnquiries((prev) => prev.filter((e) => e.id !== enqId));
+      showToast('Bulk inquiry deleted.');
+    }
+  };
+
+  const handleClearAllWholesale = () => {
+    if (window.confirm('Clear all wholesale partner applications and bulk enquiries?')) {
+      setWholesaleApps([]);
+      setBulkEnquiries([]);
+      localStorage.removeItem('giftpocket_admin_wholesale_apps');
+      localStorage.removeItem('giftpocket_admin_bulk_enquiries');
+      showToast('Wholesale data cleared.');
+    }
   };
 
   // Handlers for Story CMS
@@ -547,6 +658,8 @@ export default function App() {
               orders={orders}
               onOpenOrderDetails={(ord) => setOrderDetailsModal({ isOpen: true, order: ord })}
               onUpdateOrderStatus={handleUpdateOrderStatus}
+              onDeleteOrder={handleDeleteOrder}
+              onClearAllOrders={handleClearAllOrders}
             />
           )}
 
@@ -555,6 +668,9 @@ export default function App() {
               wholesaleApps={wholesaleApps}
               bulkEnquiries={bulkEnquiries}
               onUpdateAppStatus={handleUpdateWholesaleStatus}
+              onDeleteApp={handleDeleteWholesaleApp}
+              onDeleteEnquiry={handleDeleteBulkEnquiry}
+              onClearAllWholesale={handleClearAllWholesale}
             />
           )}
 

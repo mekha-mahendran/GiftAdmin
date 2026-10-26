@@ -8,7 +8,7 @@ export const INITIAL_CATEGORIES = [
     description: "Handcrafted floral bell charms, customized pendants, and aesthetic lanyards.",
     color: "#F4D2BE",
     textColor: "#6F5145",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/enamel-mini-phone-charms.png",
     itemCount: 24,
     order: 1
   },
@@ -19,7 +19,7 @@ export const INITIAL_CATEGORIES = [
     description: "Friendship cords, magnetic couple bands, and invisible crystal charms.",
     color: "#C9BDD8",
     textColor: "#332822",
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/lavender-crystal-flower-bracelet.jpg",
     itemCount: 18,
     order: 2
   },
@@ -30,7 +30,7 @@ export const INITIAL_CATEGORIES = [
     description: "Cute strap cartoon character keychains, name tags, and pocket keepsakes.",
     color: "#B9C5A0",
     textColor: "#332822",
-    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
+    image: "",
     itemCount: 32,
     order: 3
   },
@@ -41,7 +41,7 @@ export const INITIAL_CATEGORIES = [
     description: "Pastel flower claw clips, crystal blue hair barrettes, and vintage bows.",
     color: "#D9A99A",
     textColor: "#332822",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/ethnic-kundan-hair-ties.jpg",
     itemCount: 15,
     order: 4
   },
@@ -52,9 +52,53 @@ export const INITIAL_CATEGORIES = [
     description: "Cute panda bamboo companions, pocket desk buddies, and tiny figurines.",
     color: "#E8D49A",
     textColor: "#6F5145",
-    image: "https://images.unsplash.com/photo-1558877385-81a1c7e67d72?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/miniature-couple-character-figurines.png",
     itemCount: 20,
     order: 5
+  },
+  {
+    id: "radium-toys",
+    name: "Radium & Glow Toys",
+    slug: "radium-toys",
+    description: "Glow-in-the-dark galaxy buddies and phosphorescent desk collectibles.",
+    color: "#67949A",
+    textColor: "#F8E8D5",
+    image: "",
+    itemCount: 12,
+    order: 6
+  },
+  {
+    id: "invisible-jewellery",
+    name: "Invisible Jewellery",
+    slug: "invisible-jewellery",
+    description: "Floating illusion nylon necklaces, delicate crystal pendants & aura chokers.",
+    color: "#F8E8D5",
+    textColor: "#332822",
+    image: "",
+    itemCount: 14,
+    order: 7
+  },
+  {
+    id: "diy-kits",
+    name: "DIY Kits",
+    slug: "diy-kits",
+    description: "All-in-one bead making, charm weaving, and keychain craft stations.",
+    color: "#E8D49A",
+    textColor: "#6F5145",
+    image: "",
+    itemCount: 9,
+    order: 8
+  },
+  {
+    id: "fridge-magnets",
+    name: "Fridge Magnets",
+    slug: "fridge-magnets",
+    description: "Cute handcrafted keepsake fridge magnets and miniature cutouts.",
+    color: "#F4D2BE",
+    textColor: "#6F5145",
+    image: "",
+    itemCount: 22,
+    order: 9
   },
   {
     id: "gift-sets",
@@ -63,9 +107,20 @@ export const INITIAL_CATEGORIES = [
     description: "Curated gift boxes with greeting cards, ribbons and paired treasures.",
     color: "#B96F58",
     textColor: "#F8E8D5",
-    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+    image: "",
     itemCount: 16,
-    order: 6
+    order: 10
+  },
+  {
+    id: "jumkas",
+    name: "Jumkas",
+    slug: "jumkas",
+    description: "Handcrafted traditional bells, terracotta jhumkas, oxidized earrings, and mini festive drops.",
+    color: "#E8D49A",
+    textColor: "#332822",
+    image: "/uploads/products/earrings-silver-jhumka.jpg",
+    itemCount: 14,
+    order: 11
   }
 ];
 
@@ -88,8 +143,8 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: false,
     badge: "Bestseller",
     images: [
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/flower-bell-charms.jpg",
+      "/uploads/products/flower-bell-charms.jpg"
     ],
     description: "Cute pastel flower lanyard with mini golden chime bell. Customize with up to 8 alphabet beads and vibrant cord colors."
   },
@@ -111,7 +166,7 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: true,
     badge: "Trending",
     images: [
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/phone-charm-pastel-tulip.jpg"
     ],
     description: "Sturdy acrylic beads strung on military-grade braided paracord. Perfect for phones, keys, and bags."
   },
@@ -133,7 +188,7 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: true,
     badge: "Couples Fav",
     images: [
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/flower-bell-charms.jpg"
     ],
     description: "Two matching bracelets with mini half-heart magnets that snap together when hands hold."
   },
@@ -155,7 +210,7 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: false,
     badge: "Value Pack",
     images: [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/pastel-flower-claw-clip-set.jpg"
     ],
     description: "Ultra-soft matte pastel floral clips with secure nonslip grip."
   },
@@ -177,7 +232,7 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: false,
     badge: "Low Stock",
     images: [
-      "https://images.unsplash.com/photo-1558877385-81a1c7e67d72?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/miniature-panda-bamboo-set.jpg"
     ],
     description: "Tiny clay and resin panda clutching bamboo stem. Brings zen and smiles to any workstation."
   },
@@ -199,177 +254,172 @@ export const INITIAL_PRODUCTS = [
     isNewArrival: true,
     badge: "Premium Box",
     images: [
-      "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+      "/uploads/products/earrings-silver-jhumka.jpg"
     ],
     description: "Luxury magnetic gift box containing customized charm, greeting card with calligraphy, scented wax melt & ribbon."
   }
-];
-
-export const INITIAL_ORDERS = [
+,
   {
-    id: "ORD-98214",
-    orderNumber: "GP-2026-98214",
-    customer: {
-      name: "Priya Patel",
-      email: "priya.patel@gmail.com",
-      phone: "+91 98201 44512",
-      address: "Flat 402, Sunshine Heights, Bandra West, Mumbai, Maharashtra - 400050"
-    },
-    items: [
-      { id: "charm-flower-bell", name: "Floral Bell Phone Charm", price: 149, quantity: 2, customName: "PRIYA", theme: "Peach Sunrise" },
-      { id: "magnetic-couple-bracelet", name: "Couple Bracelets", price: 299, quantity: 1 }
+    "id": "earrings-silver-jhumka",
+    "name": "Handcrafted Silver Bell Jumka Earrings",
+    "slug": "handcrafted-silver-bell-jumka-earrings",
+    "category": "jumkas",
+    "price": 149,
+    "originalPrice": 220,
+    "wholesalePrice": 85,
+    "moq": 15,
+    "costPrice": 50,
+    "stock": 260,
+    "rating": 4.9,
+    "reviewsCount": 118,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "Festive Favorite",
+    "images": [
+      "/uploads/products/earrings-silver-jhumka.jpg"
     ],
-    subtotal: 597,
-    discountAmount: 150,
-    shippingFee: 0,
-    total: 447,
-    status: "Delivered",
-    paymentStatus: "Paid (UPI)",
-    trackingNumber: "DELHIVERY-98124501",
-    date: "2026-08-24",
-    type: "Retail"
+    "description": "Traditional oxidized silver-tone jhumka bell earrings with delicate filigree detailing and tiny acoustic bells."
   },
   {
-    id: "ORD-98215",
-    orderNumber: "GP-2026-98215",
-    customer: {
-      name: "Twinkle Trinkets Store (Rohit Verma)",
-      email: "orders@twinkletrinkets.in",
-      phone: "+91 91102 99881",
-      address: "Shop 14, Commercial Plaza, Indiranagar, Bengaluru, Karnataka - 560038"
-    },
-    items: [
-      { id: "charm-flower-bell", name: "Floral Bell Phone Charm", price: 65, quantity: 40 },
-      { id: "custom-beaded-wristlet", name: "Letter Charm Wristlet", price: 85, quantity: 15 }
+    "id": "charm-enamel-icons",
+    "name": "Aesthetic Enamel Icon Phone Charm Straps",
+    "slug": "aesthetic-enamel-icon-phone-charm-straps",
+    "category": "phone-charms",
+    "price": 139,
+    "originalPrice": 199,
+    "wholesalePrice": 75,
+    "moq": 20,
+    "costPrice": 40,
+    "stock": 320,
+    "rating": 4.9,
+    "reviewsCount": 88,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "New Arrival",
+    "images": [
+      "/uploads/products/enamel-mini-phone-charms.png"
     ],
-    subtotal: 3875,
-    discountAmount: 0,
-    shippingFee: 75,
-    total: 3950,
-    status: "Shipped",
-    paymentStatus: "Paid (NEFT)",
-    trackingNumber: "BLUEDART-8821940",
-    date: "2026-08-28",
-    type: "Wholesale"
+    "description": "Delicate gold-trimmed enamel phone charms with aesthetic pendants including coffee cup, sneaker, retro camera, moon, yin-yang, and lucky clover."
   },
   {
-    id: "ORD-98216",
-    orderNumber: "GP-2026-98216",
-    customer: {
-      name: "Ananya Sharma",
-      email: "ananya.s@outlook.com",
-      phone: "+91 98450 12389",
-      address: "Villa 22, Green Meadows, Gachibowli, Hyderabad, Telangana - 500032"
-    },
-    items: [
-      { id: "mini-panda-figurine", name: "Pocket Bamboo Panda", price: 129, quantity: 1 },
-      { id: "shipping", name: "Standard Shipping", price: 49, quantity: 1 }
+    "id": "hair-kundan-ties",
+    "name": "Handcrafted Kundan Floral Hair Ties & Scrunchies",
+    "slug": "handcrafted-kundan-floral-hair-ties",
+    "category": "hair-accessories",
+    "price": 179,
+    "originalPrice": 249,
+    "wholesalePrice": 95,
+    "moq": 15,
+    "costPrice": 55,
+    "stock": 240,
+    "rating": 4.9,
+    "reviewsCount": 94,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "Handcrafted",
+    "images": [
+      "/uploads/products/ethnic-kundan-hair-ties.jpg"
     ],
-    subtotal: 129,
-    discountAmount: 29,
-    shippingFee: 49,
-    total: 149,
-    status: "Processing",
-    paymentStatus: "Paid (Razorpay)",
-    trackingNumber: "Pending Dispatch",
-    date: "2026-08-30",
-    type: "Retail"
+    "description": "Exquisite ethnic Kundan and vibrant multi-stone floral medallion hair ties, perfect for festive hair styling, weddings, and traditional elegance."
   },
   {
-    id: "ORD-98217",
-    orderNumber: "GP-2026-98217",
-    customer: {
-      name: "Devika Roy",
-      email: "devika.roy@yahoo.com",
-      phone: "+91 97321 00219",
-      address: "B-12, Salt Lake Sector 3, Kolkata, West Bengal - 700091"
-    },
-    items: [
-      { id: "luxury-birthday-hamper", name: "Celebration Sparkle Hamper", price: 899, quantity: 1, customName: "HAPPY BDAY SANYA", notes: "Please add gold ribbon!" }
+    "id": "bracelet-lavender-crystal",
+    "name": "Lavender Crystal & Daisy Charm Bracelet",
+    "slug": "lavender-crystal-daisy-charm-bracelet",
+    "category": "bracelets",
+    "price": 199,
+    "originalPrice": 299,
+    "wholesalePrice": 110,
+    "moq": 15,
+    "costPrice": 65,
+    "stock": 190,
+    "rating": 5,
+    "reviewsCount": 142,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "Bestseller",
+    "images": [
+      "/uploads/products/lavender-crystal-flower-bracelet.jpg"
     ],
-    subtotal: 899,
-    discountAmount: 90,
-    shippingFee: 0,
-    total: 809,
-    status: "Packed",
-    paymentStatus: "Paid (Card)",
-    trackingNumber: "SHADOWFAX-661294",
-    date: "2026-09-01",
-    type: "Retail"
+    "description": "Dreamy crackle quartz lavender crystal bead bracelet accented with gold spacer beads, faceted champagne crystal droplet, and purple daisy enamel charm."
+  },
+  {
+    "id": "bracelet-gold-charms",
+    "name": "Pastel Enamel Rainbow Gold Link Bracelet",
+    "slug": "pastel-enamel-rainbow-gold-link-bracelet",
+    "category": "bracelets",
+    "price": 219,
+    "originalPrice": 320,
+    "wholesalePrice": 125,
+    "moq": 12,
+    "costPrice": 75,
+    "stock": 180,
+    "rating": 4.9,
+    "reviewsCount": 105,
+    "isCustomizable": false,
+    "isBestseller": false,
+    "isNewArrival": true,
+    "badge": "Charm Special",
+    "images": [
+      "/uploads/products/gold-charm-link-bracelet.png"
+    ],
+    "description": "Charming gold-tone link chain loaded with whimsical charms: heart padlock, butterfly, rainbow cloud, and pastel floral petals."
+  },
+  {
+    "id": "toy-glass-flower-vases",
+    "name": "Miniature Glass Flower Bouquet Desk Vases",
+    "slug": "miniature-glass-flower-bouquet-desk-vases",
+    "category": "miniature-toys",
+    "price": 169,
+    "originalPrice": 249,
+    "wholesalePrice": 89,
+    "moq": 15,
+    "costPrice": 52,
+    "stock": 220,
+    "rating": 5,
+    "reviewsCount": 120,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "Desk Magic",
+    "images": [
+      "/uploads/products/miniature-glass-flower-vases.jpg"
+    ],
+    "description": "Adorable handcrafted miniature glass flower bouquet arrangements in crystal bottles. A cheerful aesthetic pocket desk buddy and keepsake gift."
+  },
+  {
+    "id": "gp-022",
+    "name": "Miniature Romantic Couple & Cute Character Figurines",
+    "slug": "miniature-romantic-couple-cute-character-figurines",
+    "category": "miniature-toys",
+    "price": 189,
+    "originalPrice": 279,
+    "wholesalePrice": 99,
+    "moq": 12,
+    "costPrice": 58,
+    "stock": 180,
+    "rating": 5,
+    "reviewsCount": 142,
+    "isCustomizable": false,
+    "isBestseller": true,
+    "isNewArrival": true,
+    "badge": "Couple Keepsake",
+    "images": [
+      "/uploads/products/miniature-couple-character-figurines.png"
+    ],
+    "description": "Adorable handcrafted miniature romantic couple & cartoon character figurines. Featuring cute pairs on scooters, royal wedding duos, cozy animal hoods, and romantic keepsakes for car dashboards, study desks, and anniversary gifting."
   }
 ];
 
-export const INITIAL_WHOLESALE_APPS = [
-  {
-    id: "app-1",
-    businessName: "Aura Boutique & Gifts",
-    contactPerson: "Meera Sen",
-    email: "contact@auraboutique.com",
-    phone: "+91 98200 11223",
-    city: "Pune",
-    state: "Maharashtra",
-    businessType: "Gift & Lifestyle Store",
-    gst: "27AABCA1234F1Z5",
-    status: "APPROVED",
-    tier: "Silver (15% Off)",
-    appliedDate: "2026-08-15"
-  },
-  {
-    id: "app-2",
-    businessName: "Kawaii Corner Online",
-    contactPerson: "Kavya Menon",
-    email: "kavya@kawaiicorner.shop",
-    phone: "+91 94471 88990",
-    city: "Kochi",
-    state: "Kerala",
-    businessType: "Online Boutique",
-    gst: "32AAAAA0000A1Z5",
-    status: "PENDING",
-    tier: "Pending Review",
-    appliedDate: "2026-08-29"
-  },
-  {
-    id: "app-3",
-    businessName: "Bloom & Sparkle Cafe",
-    contactPerson: "Aditya Roy",
-    email: "aditya@bloomcafe.in",
-    phone: "+91 98112 33445",
-    city: "Delhi NCR",
-    state: "Delhi",
-    businessType: "Concept Cafe & Retail Shelf",
-    gst: "07AAACB2234G1Z0",
-    status: "PENDING",
-    tier: "Pending Review",
-    appliedDate: "2026-09-01"
-  }
-];
+export const INITIAL_ORDERS = [];
 
-export const INITIAL_BULK_ENQUIRIES = [
-  {
-    id: "enq-101",
-    name: "Tanya Kapoor",
-    business: "Wedding Favors by Tanya",
-    email: "tanya@weddingfavors.in",
-    phone: "+91 98100 45678",
-    productName: "Personalized Initial Floral Phone Charms",
-    quantity: 150,
-    targetDate: "2026-10-15",
-    notes: "Need pastel pink beads with bridesmaids' names for wedding giveaways in Goa.",
-    status: "Quote Sent"
-  },
-  {
-    id: "enq-102",
-    name: "Siddharth Rao",
-    business: "PixelCraft Technologies",
-    email: "hr@pixelcraft.co",
-    phone: "+91 99001 22334",
-    productName: "Pocket Bamboo Panda & Desk Buddy Kits",
-    quantity: 250,
-    targetDate: "2026-10-01",
-    notes: "Employee welcome swag boxes. Need customized branding cards.",
-    status: "New"
-  }
-];
+export const INITIAL_WHOLESALE_APPS = [];
+
+export const INITIAL_BULK_ENQUIRIES = [];
 
 export const INITIAL_STORY_FRAMES = [
   {
@@ -455,8 +505,8 @@ export const INITIAL_SETTINGS = {
   freeShippingAbove: 499,
   standardShippingFee: 49,
   supportEmail: "hello@giftpocket.in",
-  supportPhone: "+91 98420 13465",
-  whatsappNumber: "+91 98420 13465",
+  supportPhone: "+91 98656 83004",
+  whatsappNumber: "+91 98656 83004",
   gstNumber: "27AAACG9876K1Z1",
   warehouseCity: "Mumbai, Maharashtra",
   storeStatus: "Live & Taking Orders"
@@ -471,7 +521,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Bestselling Floral Phone Charm",
     subtitle: "Handmade pastel charms with golden chimes",
     tag: "Primary Hero Focus",
-    image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80",
+    image: "/images/products/bag-charms.jpg",
     link: "/shop?filter=bestseller",
     aspect: "portrait"
   },
@@ -482,7 +532,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Customized Letter Charms",
     subtitle: "Custom initials & pastel acrylic beads",
     tag: "Floating Polaroid 1",
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/flower-bell-charms.jpg",
     link: "/customized",
     aspect: "square"
   },
@@ -493,7 +543,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Eco Packaging & Gift Boxes",
     subtitle: "Wrapped with love & wax seals",
     tag: "Floating Polaroid 2",
-    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/earrings-silver-jhumka.jpg",
     link: "/shop?category=gift-sets",
     aspect: "square"
   },
@@ -507,7 +557,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Make their special day sparkle with ready gift hampers",
     tag: "Celebration",
     color: "#F4D2BE",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/pastel-flower-claw-clip-set.jpg",
     link: "/shop?mood=birthday",
     aspect: "landscape"
   },
@@ -519,7 +569,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Matching cords, secret charms & initials",
     tag: "Friendship",
     color: "#C9BDD8",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/flower-bell-charms.jpg",
     link: "/shop?mood=bestie",
     aspect: "landscape"
   },
@@ -531,7 +581,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Magnetic pairs & custom anniversary tokens",
     tag: "Love & Romance",
     color: "#D9A99A",
-    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/miniature-couple-character-figurines.png",
     link: "/shop?mood=couple",
     aspect: "landscape"
   },
@@ -543,7 +593,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Tiny spontaneous pick-me-ups to make someone smile",
     tag: "Surprise",
     color: "#B9C5A0",
-    image: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/miniature-panda-bamboo-set.jpg",
     link: "/shop?mood=cute",
     aspect: "landscape"
   },
@@ -557,7 +607,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Aesthetic phone charms for your everyday case",
     tag: "Chapter: Peach",
     bgColor: "#F4D2BE",
-    image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80",
+    image: "/images/products/bag-charms.jpg",
     link: "/shop?category=phone-charms",
     aspect: "square"
   },
@@ -569,7 +619,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Keepsake friendship & couple magnetic bands",
     tag: "Chapter: Lavender",
     bgColor: "#C9BDD8",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/flower-bell-charms.jpg",
     link: "/shop?category=bracelets",
     aspect: "square"
   },
@@ -581,7 +631,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Pocket-sized resin shakers & 3D food miniatures",
     tag: "Chapter: Sage",
     bgColor: "#B9C5A0",
-    image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/miniature-panda-bamboo-set.jpg",
     link: "/shop?category=keychains",
     aspect: "square"
   },
@@ -593,7 +643,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     subtitle: "Creative charm making & bead craft stations",
     tag: "Chapter: Yellow",
     bgColor: "#E8D49A",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+    image: "/uploads/products/pastel-flower-claw-clip-set.jpg",
     link: "/shop?category=diy-kits",
     aspect: "square"
   },
@@ -606,7 +656,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "The Birthday Surprise",
     subtitle: "Personalized hampers filled with custom charms, glowing toys & handwritten wishes.",
     tag: "BIRTHDAY",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80",
+    image: "/uploads/products/pastel-flower-claw-clip-set.jpg",
     link: "/shop?mood=birthday",
     aspect: "landscape"
   },
@@ -617,7 +667,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "The Unbreakable Bestie Bond",
     subtitle: "Matching pastel cords and secret charms that make miles feel like inches.",
     tag: "BESTIE",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80",
+    image: "/uploads/products/flower-bell-charms.jpg",
     link: "/shop?mood=bestie",
     aspect: "landscape"
   },
@@ -628,7 +678,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "The 'Just Because' Smile",
     subtitle: "Tiny pocket surprises sent for no other reason than to brighten their afternoon.",
     tag: "JUST BECAUSE",
-    image: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80",
+    image: "/uploads/products/miniature-panda-bamboo-set.jpg",
     link: "/shop?mood=cute",
     aspect: "landscape"
   },
@@ -641,7 +691,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Glow-in-the-Dark Radium Pocket Buddies",
     subtitle: "Phosphorescent desk toys and starry companions",
     tag: "Radium & Glow",
-    image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/miniature-panda-bamboo-set.jpg",
     link: "/shop?category=radium-toys",
     aspect: "portrait"
   },
@@ -652,7 +702,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Cute Cartoon Strap Keychains",
     subtitle: "Pastel silicone straps with silicone figurines",
     tag: "Keychains",
-    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/phone-charm-pastel-tulip.jpg",
     link: "/shop?category=keychains",
     aspect: "portrait"
   },
@@ -663,7 +713,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Panda & Bamboo Miniature Figurines",
     subtitle: "Tiny desk companions and zen buddies",
     tag: "Miniature Toys",
-    image: "https://images.unsplash.com/photo-1558877385-81a1c7e67d72?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/miniature-panda-bamboo-set.jpg",
     link: "/shop?category=miniature-toys",
     aspect: "square"
   },
@@ -674,7 +724,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Pastel Flower Claw Clips & Hair Barrettes",
     subtitle: "Matte aesthetic hair accessories and vintage pins",
     tag: "Hair Accessories",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/pastel-flower-claw-clip-set.jpg",
     link: "/shop?category=hair-accessories",
     aspect: "portrait"
   },
@@ -685,7 +735,7 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     title: "Floral Bell Bag Charms & Pendants",
     subtitle: "Handcrafted lanyard with gentle chiming bells",
     tag: "Bag Charms",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+    image: "/uploads/products/flower-bell-charms.jpg",
     link: "/shop?category=phone-charms",
     aspect: "portrait"
   },
@@ -693,11 +743,11 @@ export const INITIAL_HOMEPAGE_MEDIA = [
     id: "gallery-6",
     section: "gallery",
     sectionName: "Pinterest Feed",
-    title: "Curated Keepsake Gift Sets & Boxes",
-    subtitle: "Luxury magnetic gift hampers with personalized notes",
-    tag: "Gift Sets",
-    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
-    link: "/shop?category=gift-sets",
+    title: "Miniature Couple & Character Figurines",
+    subtitle: "Adorable desk keepsakes & car dashboard buddies",
+    tag: "Figurines",
+    image: "/uploads/products/miniature-couple-character-figurines.png",
+    link: "/shop?category=miniature-toys",
     aspect: "square"
   }
 ];

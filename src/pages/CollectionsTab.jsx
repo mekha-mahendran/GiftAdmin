@@ -50,14 +50,20 @@ export const CollectionsTab = ({
           >
             {/* Image Header with Chapter Ribbon */}
             <div className="relative h-44 bg-[#FAF5EE] overflow-hidden">
-              <img
-                src={cat.image}
-                alt={cat.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';
-                }}
-              />
+              {cat.image ? (
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-xs text-[#6F5145] font-semibold bg-[#F8E8D5]/40">
+                  <span>No photo uploaded</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#332822]/85 via-transparent to-transparent" />
               
               {/* Chapter Badge */}

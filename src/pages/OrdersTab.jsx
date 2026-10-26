@@ -8,13 +8,16 @@ import {
   Truck,
   Clock,
   Printer,
-  ChevronDown
+  ChevronDown,
+  Trash2
 } from 'lucide-react';
 
 export const OrdersTab = ({
   orders,
   onOpenOrderDetails,
-  onUpdateOrderStatus
+  onUpdateOrderStatus,
+  onDeleteOrder,
+  onClearAllOrders
 }) => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [channelFilter, setChannelFilter] = useState('all');
@@ -47,6 +50,16 @@ export const OrdersTab = ({
             Manage status transitions, custom engraving notes, tracking numbers and packing slips
           </p>
         </div>
+
+        {orders.length > 0 && onClearAllOrders && (
+          <button
+            onClick={onClearAllOrders}
+            className="px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-xl font-bold transition-all shrink-0 inline-flex items-center gap-1.5"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            <span>Clear All Orders</span>
+          </button>
+        )}
       </div>
 
       {/* Filter Row */}
@@ -178,7 +191,7 @@ export const OrdersTab = ({
                     </td>
 
                     {/* Actions */}
-                    <td className="text-right py-3.5 px-4">
+                    <td className="text-right py-3.5 px-4 space-x-2">
                       <button
                         onClick={() => onOpenOrderDetails(ord)}
                         className="px-3 py-1.5 bg-[#B96F58] hover:bg-[#332822] text-white rounded-xl text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5"
@@ -186,6 +199,15 @@ export const OrdersTab = ({
                         <Eye className="w-3.5 h-3.5" />
                         <span>Details</span>
                       </button>
+                      {onDeleteOrder && (
+                        <button
+                          onClick={() => onDeleteOrder(ord.id)}
+                          className="p-1.5 hover:bg-rose-50 text-rose-500 hover:text-rose-700 rounded-xl transition-all inline-flex items-center"
+                          title="Delete Order"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );
@@ -195,9 +217,18 @@ export const OrdersTab = ({
         </div>
 
         {filteredOrders.length === 0 && (
-          <div className="p-10 text-center text-[#6F5145] space-y-2">
-            <ShoppingCart className="w-8 h-8 text-[#D9A99A] mx-auto" />
-            <p className="font-semibold text-xs">No matching orders found.</p>
+          <div className="p-12 text-center text-[#6F5145] space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#F8E8D5] text-[#B96F58] flex items-center justify-center mx-auto shadow-inner">
+              <ShoppingCart className="w-6 h-6" />
+            </div>
+            <h4 className="font-editorial text-base font-bold text-[#332822]">
+              {orders.length === 0 ? "No active orders in pipeline" : "No matching orders found"}
+            </h4>
+            <p className="text-xs text-[#6F5145] max-w-sm mx-auto">
+              {orders.length === 0
+                ? "Customer orders placed on the storefront will appear here live in real time."
+                : "Try adjusting your search query or status filter."}
+            </p>
           </div>
         )}
       </div>

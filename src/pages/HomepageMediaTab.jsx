@@ -101,7 +101,7 @@ export const HomepageMediaTab = ({
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
-                  e.target.src = 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80';
+                  e.target.src = '/images/products/bag-charms.jpg';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#332822]/80 via-transparent to-transparent" />

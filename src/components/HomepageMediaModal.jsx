@@ -9,7 +9,7 @@ export const HomepageMediaModal = ({ isOpen, onClose, onSave, mediaItem }) => {
     subtitle: '',
     section: 'hero',
     tag: '',
-    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80',
+    image: '/images/products/bag-charms.jpg',
     link: '/shop',
     color: '#F4D2BE'
   });
@@ -23,7 +23,7 @@ export const HomepageMediaModal = ({ isOpen, onClose, onSave, mediaItem }) => {
         subtitle: mediaItem.subtitle || '',
         section: mediaItem.section || 'hero',
         tag: mediaItem.tag || '',
-        image: mediaItem.image || 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80',
+        image: mediaItem.image || '/images/products/bag-charms.jpg',
         link: mediaItem.link || '/shop',
         color: mediaItem.color || mediaItem.bgColor || '#F4D2BE'
       });
@@ -33,7 +33,7 @@ export const HomepageMediaModal = ({ isOpen, onClose, onSave, mediaItem }) => {
         subtitle: '',
         section: 'gallery',
         tag: 'Featured Photo',
-        image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80',
+        image: '/images/products/bag-charms.jpg',
         link: '/shop',
         color: '#F4D2BE'
       });

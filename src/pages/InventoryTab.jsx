@@ -85,16 +85,18 @@ export const InventoryTab = ({
                 return (
                   <tr key={prod.id} className="hover:bg-[#F8E8D5]/20 transition-colors">
                     
-                    {/* Name + Thumbnail */}
                     <td className="py-3 px-4 flex items-center gap-3">
-                      <img
-                        src={prod.images?.[0] || prod.image}
-                        alt={prod.name}
-                        className="w-10 h-10 rounded-xl object-cover border border-[#D9A99A]/40 shrink-0 bg-slate-100"
-                        onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';
-                        }}
-                      />
+                      {(prod.images?.[0] || prod.image) ? (
+                        <img
+                          src={prod.images?.[0] || prod.image}
+                          alt={prod.name}
+                          className="w-10 h-10 rounded-xl object-cover border border-[#D9A99A]/40 shrink-0 bg-slate-100"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-xl border border-[#D9A99A]/40 shrink-0 bg-[#F4D2BE]/30 flex items-center justify-center text-[9px] font-bold text-[#6F5145]/60">
+                          No Pic
+                        </div>
+                      )}
                       <div>
                         <strong className="font-bold text-[#332822] block">{prod.name}</strong>
                         <span className="text-[10px] text-[#6F5145] font-mono">SKU: {prod.slug}</span>

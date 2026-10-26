@@ -1,22 +1,37 @@
 import React from 'react';
-import { Store, CheckCircle2, XCircle, Clock, Mail, Phone, MapPin, Building } from 'lucide-react';
+import { Store, CheckCircle2, XCircle, Clock, Mail, Phone, MapPin, Building, Trash2 } from 'lucide-react';
 
 export const WholesaleTab = ({
   wholesaleApps,
   bulkEnquiries,
-  onUpdateAppStatus
+  onUpdateAppStatus,
+  onDeleteApp,
+  onDeleteEnquiry,
+  onClearAllWholesale
 }) => {
   return (
     <div className="space-y-8 animate-in fade-in duration-200">
       
       {/* Header */}
-      <div>
-        <h3 className="font-editorial text-2xl font-bold text-[#332822]">
-          Wholesale B2B & Retail Partner Desk
-        </h3>
-        <p className="text-xs text-[#6F5145]">
-          Vet stockist applications, assign wholesale pricing tiers (Silver/Gold/Platinum), and process bulk event requests
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="font-editorial text-2xl font-bold text-[#332822]">
+            Wholesale B2B & Retail Partner Desk
+          </h3>
+          <p className="text-xs text-[#6F5145]">
+            Vet stockist applications, assign wholesale pricing tiers (Silver/Gold/Platinum), and process bulk event requests
+          </p>
+        </div>
+
+        {(wholesaleApps.length > 0 || bulkEnquiries.length > 0) && onClearAllWholesale && (
+          <button
+            onClick={onClearAllWholesale}
+            className="px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-xl font-bold transition-all shrink-0 inline-flex items-center gap-1.5"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+            <span>Clear Wholesale Data</span>
+          </button>
+        )}
       </div>
 
       {/* Section 1: Partner Applications */}
@@ -30,10 +45,15 @@ export const WholesaleTab = ({
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {wholesaleApps.map((app) => (
-            <div
-              key={app.id}
+        {wholesaleApps.length === 0 ? (
+          <div className="p-8 bg-white rounded-3xl border border-[#D9A99A]/40 text-center text-xs text-[#6F5145]">
+            No wholesale partner applications submitted yet.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {wholesaleApps.map((app) => (
+              <div
+                key={app.id}
               className="p-5 bg-white rounded-3xl border border-[#D9A99A]/40 shadow-xs space-y-4 flex flex-col justify-between"
             >
               <div className="space-y-3">
@@ -105,28 +125,43 @@ export const WholesaleTab = ({
                       Gold (25%)
                     </button>
 
-                    <button
-                      onClick={() => onUpdateAppStatus(app.id, 'REJECTED', 'None')}
-                      className="px-3 py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold rounded-xl transition-all"
-                    >
-                      Reject
-                    </button>
+                    {onDeleteApp && (
+                      <button
+                        onClick={() => onDeleteApp(app.id)}
+                        className="p-2 text-rose-500 hover:bg-rose-50 rounded-xl transition-all"
+                        title="Delete application"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </>
                 ) : (
                   <div className="w-full flex items-center justify-between text-emerald-800 font-bold text-xs py-1">
                     <span>Active Verified Partner</span>
-                    <button
-                      onClick={() => onUpdateAppStatus(app.id, 'PENDING', 'Pending Review')}
-                      className="text-xs text-[#6F5145] hover:underline font-normal"
-                    >
-                      Revoke Approval
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => onUpdateAppStatus(app.id, 'PENDING', 'Pending Review')}
+                        className="text-xs text-[#6F5145] hover:underline font-normal"
+                      >
+                        Revoke Approval
+                      </button>
+                      {onDeleteApp && (
+                        <button
+                          onClick={() => onDeleteApp(app.id)}
+                          className="text-rose-500 hover:text-rose-700"
+                          title="Delete application"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
             </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Section 2: Custom Bulk Event Enquiries */}
@@ -135,10 +170,15 @@ export const WholesaleTab = ({
           Corporate & Event Bulk Enquiries ({bulkEnquiries.length})
         </h4>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {bulkEnquiries.map((enq) => (
-            <div
-              key={enq.id}
+        {bulkEnquiries.length === 0 ? (
+          <div className="p-8 bg-white rounded-3xl border border-[#D9A99A]/40 text-center text-xs text-[#6F5145]">
+            No corporate or event bulk enquiries submitted yet.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {bulkEnquiries.map((enq) => (
+              <div
+                key={enq.id}
               className="p-5 bg-white rounded-3xl border border-[#D9A99A]/40 shadow-xs space-y-3"
             >
               <div className="flex items-start justify-between">
@@ -167,16 +207,28 @@ export const WholesaleTab = ({
 
               <div className="flex items-center justify-between pt-2 text-xs">
                 <span className="font-bold text-emerald-800">Status: {enq.status}</span>
-                <a
-                  href={`mailto:${enq.email}?subject=GIFTPocket Bulk Quote - ${enq.productName}`}
-                  className="px-3 py-1.5 bg-[#B96F58] hover:bg-[#332822] text-white font-bold rounded-xl transition-all"
-                >
-                  Send Quotation Email
-                </a>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={`mailto:${enq.email}?subject=GIFTPocket Bulk Quote - ${enq.productName}`}
+                    className="px-3 py-1.5 bg-[#B96F58] hover:bg-[#332822] text-white font-bold rounded-xl transition-all"
+                  >
+                    Send Quotation Email
+                  </a>
+                  {onDeleteEnquiry && (
+                    <button
+                      onClick={() => onDeleteEnquiry(enq.id)}
+                      className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-xl transition-all"
+                      title="Delete inquiry"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        )}
       </div>
 
     </div>
